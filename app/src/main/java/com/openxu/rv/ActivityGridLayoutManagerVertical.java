@@ -3,16 +3,17 @@ package com.openxu.rv;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.openxu.rv.adapter.CommandRecyclerAdapter;
 import com.openxu.rv.adapter.ViewHolder;
-import com.openxu.rv.divider.MyGridDividerDecoration;
+import com.openxu.rv.divider.GridDividerDecoration;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ActivityGridLayoutManager extends AppCompatActivity {
+public class ActivityGridLayoutManagerVertical extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private List<String> dataList;
@@ -29,10 +30,11 @@ public class ActivityGridLayoutManager extends AppCompatActivity {
         }
 
         recyclerView = findViewById(R.id.recyclerView);
-        GridLayoutManager mGridtManager = new GridLayoutManager(this, 3);
+        GridLayoutManager mGridtManager = new GridLayoutManager(this, 3, LinearLayoutManager.VERTICAL, false);
+
         recyclerView.setLayoutManager(mGridtManager);
         adapter = new CommandRecyclerAdapter<String>
-                (this, R.layout.item, dataList) {
+                (this, R.layout.item_grid_vertical, dataList) {
             @Override
             public void convert(ViewHolder holder, String str) {
                 holder.setText(R.id.tv_item, str);
@@ -42,7 +44,7 @@ public class ActivityGridLayoutManager extends AppCompatActivity {
             }
         };
         recyclerView.setAdapter(adapter);
-        recyclerView.addItemDecoration(new MyGridDividerDecoration(this));
+        recyclerView.addItemDecoration(new GridDividerDecoration(this));
 
     }
 }

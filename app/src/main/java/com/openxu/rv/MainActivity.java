@@ -16,9 +16,10 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    private String TAG = "MainActivity";
+
     private RecyclerView recyclerView;
     private List<String> dataList;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +33,8 @@ public class MainActivity extends AppCompatActivity {
         dataList.add("高级使用--自定义间隔样式");
         dataList.add("基本使用--动画");
         dataList.add("高级使用--自定义动画");
-        dataList.add("基本使用--网格样式GridLayoutManager");
+        dataList.add("基本使用--网格样式GridLayoutManager 竖向VERTICAL");
+        dataList.add("基本使用--网格样式GridLayoutManager 横向HORIZONTAL");
         dataList.add("基本使用--瀑布流样式StaggeredGridLayoutManager");
 
         recyclerView = findViewById(R.id.recyclerView);
@@ -81,9 +83,12 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(this, ActivityAnimCustom.class));
                 break;
             case 6:
-                startActivity(new Intent(this, ActivityGridLayoutManager.class));
+                startActivity(new Intent(this, ActivityGridLayoutManagerVertical.class));
                 break;
             case 7:
+                startActivity(new Intent(this, ActivityGridLayoutManagerHorizontal.class));
+                break;
+            case 8:
                 startActivity(new Intent(this, ActivityStaggeredGridLayoutManager.class));
                 break;
         }

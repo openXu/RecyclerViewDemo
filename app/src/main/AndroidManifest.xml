@@ -22,7 +22,8 @@
         <activity android:name=".ActivityItemDividerCustom"/>
         <activity android:name=".ActivityAnim"/>
         <activity android:name=".ActivityAnimCustom"/>
-        <activity android:name=".ActivityGridLayoutManager"/>
+        <activity android:name=".ActivityGridLayoutManagerVertical"/>
+        <activity android:name=".ActivityGridLayoutManagerHorizontal"/>
         <activity android:name=".ActivityStaggeredGridLayoutManager"/>
 
     </application>

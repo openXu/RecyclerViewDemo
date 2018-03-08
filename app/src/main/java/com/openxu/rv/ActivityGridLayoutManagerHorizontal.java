@@ -2,40 +2,38 @@ package com.openxu.rv;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.OrientationHelper;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 
-import com.openxu.rv.adapter.CommandRecyclerStaggeredAdapter;
+import com.openxu.rv.adapter.CommandRecyclerAdapter;
 import com.openxu.rv.adapter.ViewHolder;
+import com.openxu.rv.divider.GridDividerDecoration;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ActivityStaggeredGridLayoutManager extends AppCompatActivity {
+public class ActivityGridLayoutManagerHorizontal extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private List<String> dataList;
-    private CommandRecyclerStaggeredAdapter adapter;
+    private CommandRecyclerAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_staggered);
+        setContentView(R.layout.activity_main);
 
         dataList = new ArrayList<>();
         for(int i=1;i<=50;i++){
             dataList.add("item--"+i);
         }
-        List<Integer> itemLayouts = new ArrayList<>();
-        itemLayouts.add(R.layout.item_staggered_1);
-        itemLayouts.add(R.layout.item_staggered_2);
+
         recyclerView = findViewById(R.id.recyclerView);
-        StaggeredGridLayoutManager manager = new StaggeredGridLayoutManager
-                (2, OrientationHelper.VERTICAL);
-        recyclerView.setLayoutManager(manager);
-        adapter = new CommandRecyclerStaggeredAdapter<String>
-                (this, itemLayouts, dataList) {
+        GridLayoutManager mGridtManager = new GridLayoutManager(this, 3, LinearLayoutManager.HORIZONTAL, false);
+        recyclerView.setLayoutManager(mGridtManager);
+        adapter = new CommandRecyclerAdapter<String>
+                (this, R.layout.item_grid_horizontal, dataList) {
             @Override
             public void convert(ViewHolder holder, String str) {
                 holder.setText(R.id.tv_item, str);
@@ -45,6 +43,7 @@ public class ActivityStaggeredGridLayoutManager extends AppCompatActivity {
             }
         };
         recyclerView.setAdapter(adapter);
+        recyclerView.addItemDecoration(new GridDividerDecoration(this));
 
     }
 }

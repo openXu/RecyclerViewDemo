@@ -39,6 +39,12 @@ public abstract class CommandRecyclerStaggeredAdapter<T> extends RecyclerView.Ad
     public int getItemCount(){
         return mDatas.size();
     }
+
+    @Override
+    public int getItemViewType(int position) {
+        // 瀑布流样式外部设置spanCount为2，在这列设置两个不同的item type，以区分不同的布局
+        return position % 2;
+    }
     @Override
     public ViewHolder onCreateViewHolder(final ViewGroup parent, int viewType){
         ViewHolder viewHolder = ViewHolder.get(mContext, parent, mLayoutIds.get(viewType));
